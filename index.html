@@ -2,51 +2,23 @@
 <html>
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script id="vertex-shader" type="x-shader/x-vertex">
-
-uniform bool firing;
-uniform float xMove;
-uniform float yMove;
-attribute vec4 vPosition;
-
-void
-main()
-{
-    gl_PointSize = 3.0;
-    vec4 t = vPosition;
-
-    if(firing) t.y += yMove;
-    t.x += xMove;
-    gl_Position = t;
-}
-</script>
-
-        <script id="fragment-shader" type="x-shader/x-fragment">
-
-precision mediump float;
-
-varying vec4 fColor;
-void
-main()
-{
-    gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
-}
-</script>
-
-        <script type="text/javascript" src="./Common/webgl-utils.js"></script>
-        <script type="text/javascript" src="./Common/initShaders.js"></script>
-        <script type="text/javascript" src="./Common/MV.js"></script>
-        <script type="text/javascript" src="./Verkefni1.js"></script>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tölvugrafík</title>
+        <meta name="TÖL105M" content="Verkefni í Tölvugrafík" />
+        <meta name="Abel Haukur Guðmundsson" content="Abel Haukur Guðmundsson" />
     </head>
 
     <body>
-        <canvas id="gl-canvas" width="1000" height="800" oncontextmenu="return false;">&gt;
-            Oops ... your browser doesn't support the HTML5 canvas element
-        </canvas>
+        <h1>TÖL105M Tölvugrafík</h1>
+        <h2>Haust 2024</h2>
 
-
+        <ul>
+            <li><a href="./Verkefni1/Verkefni1.html">Verkefni 1</a></li> - Skotveiði
+            <li><a href="./Heimadaemi3/2D Sierpinski Gasket.html">Heimadæmi 3 dæmi 1</a></li> - gasket1 með bættum
+            eiginleikum
+            <li><a href="./Heimadaemi3/Hringur.html">Heimadæmi 3 dæmi 2</a></li> - drawCircle: hringur sem færist um x
+            og y-ás með bútalitara
+        </ul>
     </body>
 
 </html>
