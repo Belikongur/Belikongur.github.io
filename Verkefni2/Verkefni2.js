@@ -129,7 +129,7 @@ window.onload = function init() {
         e.preventDefault(); // Disable drag and drop
     });
 
-    canvas.addEventListener("mousemove", function (e) {
+    canvas.addEventListener("mousemove", (e) => {
         if (movement) {
             spinY = (spinY + (e.clientX - origX)) % 360;
             spinX = (spinX + (origY - e.clientY)) % 360;
