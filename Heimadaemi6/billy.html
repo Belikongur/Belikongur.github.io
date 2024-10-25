@@ -1,0 +1,65 @@
+<html>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+
+        attribute  vec4 vPosition;
+        attribute  vec4 vNormal;
+        varying vec3 N,L,E,H;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        uniform vec4 lightPosition;
+        uniform mat3 normalMatrix;
+
+        void main() 
+        {
+            vec3 pos = (modelViewMatrix*vPosition).xyz;
+        
+            L = normalize(lightPosition.xyz - pos);
+            E = -normalize(pos);
+            H = normalize(L+E);
+            N = normalize(normalMatrix * vNormal.xyz);
+
+            gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+        } 
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+
+        precision mediump float;
+
+        uniform vec4 ambient;
+        uniform vec4 diffuse;
+        uniform vec4 specular;
+        uniform float shininess;
+        varying vec3 N, L, E, H;
+
+        void main()
+        {
+            float cos_th = max(dot(L,N), 0.0);
+            vec4 Kd = cos_th * diffuse;
+        
+            float cos_phi = pow(max(dot(N, H), 0.0), shininess);
+            vec4 Ks = cos_phi * specular;
+            if(dot(L,N) < 0.0) Ks = vec4(0.0,0.0,0.0,1.0);
+        
+            vec4 fColor = ambient + Kd + Ks;
+            fColor.a = 1.0;
+            gl_FragColor = fColor;
+        }
+    </script>
+
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="text/javascript" src="billy.js"></script>
+
+    <body>
+        <canvas id="gl-canvas" width="512"" height=" 512">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+
+        <br />
+
+    </body>
+
+</html>
