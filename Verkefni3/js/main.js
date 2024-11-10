@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { OBJLoader } from '../node_modules/three/examples/jsm/loaders/OBJLoader.js';
-import { MTLLoader } from '../node_modules/three/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from './libs/three.module.js';
+import { OBJLoader } from './libs/OBJLoader.js';
+import { MTLLoader } from './libs/MTLLoader.js';
 
 
 // Global variables
