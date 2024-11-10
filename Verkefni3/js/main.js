@@ -1,10 +1,10 @@
-import * as THREE from 'three';
+import * as THREE from '../three/build/three.module.js';
 import { OBJLoader } from '../three/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from '../three/examples/jsm/loaders/MTLLoader.js';
 
 
 // Global variables
-let scene, camera, renderer, controls;
+let scene, camera, renderer;
 let player = new THREE.Object3D();
 let cars = [], trees = [], treeBoundingBoxes = [];
 const playerBoundingBox = new THREE.Box3();
