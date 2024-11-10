@@ -1,6 +1,6 @@
-import * as THREE from '../three/build/three.module.js';
-import { OBJLoader } from '../three/examples/jsm/loaders/OBJLoader.js';
-import { MTLLoader } from '../three/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from 'three';
+import { OBJLoader } from '../node_modules/three/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from '../node_modules/three/examples/jsm/loaders/MTLLoader.js';
 
 
 // Global variables
@@ -11,19 +11,46 @@ const playerBoundingBox = new THREE.Box3();
 
 // Camera varaibles
 const DEG2RAD = Math.PI / 180;
-let cameraDistance = 5;  // Distance behind the player
-let cameraHeight = 2;    // Height above the player
-let cameraAzimuth = 0;   // Horizontal rotation around the player
-let cameraMaxAzimuth = 45; // Limit for left/right camera panning
+let cameraDistance = 5;
+let cameraHeight = 2;
+let cameraAzimuth = 0;
+let cameraMaxAzimuth = 45;
 let isMousedown = false;
 let prevMouseX = 0;
 
 // Models
 const models = {
-    player: { mtlUrl: '../resources/player/frog.mtl', objUrl: '../resources/player/frog.obj', position: [0, 0, 0], scale: [0.5, 0.5, 0.5], rotation: Math.PI * -0.5, speed: 1 },
-    car: { mtlUrl: '../resources/cars/car.mtl', objUrl: '../resources/cars/car.obj', position: [-45, 0.1, -28], scale: [3, 3, 3], rotation: Math.PI, speed: 0.35 },
-    Humvee: { mtlUrl: '../resources/cars/Humvee.mtl', objUrl: '../resources/cars/Humvee.obj', position: [-65, 0.1, 27], scale: [0.04, 0.04, 0.04], rotation: Math.PI * 0.5, speed: 0.5 },
-    G7: { mtlUrl: '../resources/cars/G7.mtl', objUrl: '../resources/cars/G7.obj', position: [-45, 4.4, 40], scale: [4, 4, 4], rotation: Math.PI * -0.5, speed: 0.2 }
+    player: {
+        mtlUrl: '../resources/player/frog.mtl',
+        objUrl: '../resources/player/frog.obj',
+        position: [0, 0, 0], scale: [0.5, 0.5, 0.5],
+        rotation: Math.PI * -0.5,
+        speed: 1
+    },
+    car: {
+        mtlUrl: '../resources/cars/car.mtl',
+        objUrl: '../resources/cars/car.obj',
+        position: [-45, 0.1, -28],
+        scale: [3, 3, 3],
+        rotation: Math.PI,
+        speed: 0.35
+    },
+    Humvee: {
+        mtlUrl: '../resources/cars/Humvee.mtl',
+        objUrl: '../resources/cars/Humvee.obj',
+        position: [-65, 0.1, 27],
+        scale: [0.04, 0.04, 0.04],
+        rotation: Math.PI * 0.5,
+        speed: 0.5
+    },
+    G7: {
+        mtlUrl: '../resources/cars/G7.mtl',
+        objUrl: '../resources/cars/G7.obj',
+        position: [-45, 4.4, 40],
+        scale: [4, 4, 4],
+        rotation: Math.PI * -0.5,
+        speed: 0.2
+    }
 }
 
 // Textures
@@ -304,7 +331,9 @@ window.addEventListener("keydown", (e) => {
     if (movement[e.key]) {
         const { axis, direction } = movement[e.key];
         player.position[axis] += direction;
-        player.rotation.z = axis === 'z' ? (direction === 1 ? 0 : Math.PI) : (direction === 1 ? Math.PI * 0.5 : Math.PI * -0.5);
+        player.rotation.z = axis === 'z' ?
+            (direction === 1 ? 0 : Math.PI) :
+            (direction === 1 ? Math.PI * 0.5 : Math.PI * -0.5);
         updateCameraPosition();
     }
 });
