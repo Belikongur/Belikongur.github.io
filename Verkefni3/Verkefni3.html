@@ -189,8 +189,8 @@
             };
 
             for (const name in models) {
-                const mtlLoader = new THREE.MTLLoader(manager);
-                const objLoader = new THREE.OBJLoader(manager);
+                const mtlLoader = new MTLLoader(manager);
+                const objLoader = new OBJLoader(manager);
                 const { mtlUrl, objUrl, position, scale, rotation, speed } = models[name];
                 mtlLoader.load(mtlUrl, (mtl) => {
                     mtl.preload();
